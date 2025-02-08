@@ -1,0 +1,85 @@
+---
+name: Angular Frontend Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint Angular Project
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3.4.0
+        with:
+          node-version: '22'
+
+      - run: npm ci
+      - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    name: Run Unit Tests
+    needs:
+      - lint
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3.4.0
+        with:
+          node-version: '22'
+
+      - run: npm ci
+      - run: npm run test
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    name: Run End to End Tests
+    needs:
+      - lint
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3.4.0
+        with:
+          node-version: '22'
+
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - run: npx playwright test
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build Angular Project
+    needs:
+      - test
+      - e2e-test
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3.4.0
+        with:
+          node-version: '22'
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4.4.3
+        with:
+          name: angular-dist
+          path: dist/
