@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SWM2_2AT_Kammerer_Frontend": {
+    "swm2_2at_kammerer_frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -92,10 +92,26 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "916a14c5-68db-4cca-ace1-39448f030db0",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
