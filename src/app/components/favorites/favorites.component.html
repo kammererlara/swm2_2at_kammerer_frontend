@@ -1,0 +1,33 @@
+<h1>Manage Favorites</h1>
+<form [formGroup]="favoriteForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+
+  <div formGroupName="location">
+    <label for="locationName">Location Name:</label>
+    <input id="locationName" formControlName="name" type="text"
+           class="form-control" data-bs-toggle="tooltip" data-bs-placement="right"
+           title="Bitte den Ortsnamen im Format 'Stadt' oder 'Stadt,Land' eingeben (z.B. 'Vienna', 'Vienna,Austria')"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<table class="favoriteTable">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let favorite of favorites">
+    <td>
+      <a [routerLink]="['/favorites', favorite.id]">{{ favorite.name }}</a>
+    </td>
+    <td class="action-buttons">
+      <button class="delete-btn" (click)="favorite.id ? onDelete(favorite.id) : null">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
