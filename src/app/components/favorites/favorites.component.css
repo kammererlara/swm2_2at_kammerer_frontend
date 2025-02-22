@@ -1,0 +1,116 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+form {
+  background: #ffffff;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button.btn-primary {
+  background-color: #2c3e50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+button.btn-primary:hover {
+  background-color: #1a252f;
+}
+
+.favoriteTable {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.favoriteTable th, .favoriteTable td {
+  padding: 10px 10px 10px 20px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.favoriteTable th {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.favoriteTable a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.favoriteTable a:hover {
+  color: #1a252f;
+}
+
+.action-buttons {
+  text-align: right;
+}
+
+button.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+  .favoriteTable {
+    width: 100%;
+  }
+}
