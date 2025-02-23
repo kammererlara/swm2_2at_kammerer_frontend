@@ -25,7 +25,7 @@ test('should display a success message when a favorite is created successfully',
   await page.goto('/favorites');
 
   await page.fill('input#name', 'Favorite 1');
-  await page.fill('input#locationName', 'Vienna,Austria');
+  await page.fill('input#locationName', 'Graz');
 
   const alertPromise = page.waitForEvent('dialog');
 
