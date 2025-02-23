@@ -1,0 +1,56 @@
+<h1>Weather Details</h1>
+
+<!-- Favoriten-Daten -->
+<div *ngIf="favorite" class="card favoriteData">
+  <h2>Favorite Details</h2>
+  <h3>Name</h3>
+  <p>{{ favorite.name }}</p>
+  <div class="info-container">
+    <div class="user-section">
+      <h3>User</h3>
+      <div class="nested-data">
+        <p *ngIf="favorite.user.firstname"><strong>First Name:</strong> {{ favorite.user.firstname }}</p>
+        <p *ngIf="favorite.user.lastname"><strong>Last Name:</strong> {{ favorite.user.lastname }}</p>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="location-section">
+      <h3>Location</h3>
+      <div class="nested-data">
+        <p><strong>Name:</strong> {{ favorite.location.name }}</p>
+        <p *ngIf="favorite.location.latitude"><strong>Latitude:</strong> {{ favorite.location.latitude }}</p>
+        <p *ngIf="favorite.location.longitude"><strong>Longitude:</strong> {{ favorite.location.longitude }}</p>
+        <p *ngIf="favorite.location.elevation"><strong>Elevation:</strong> {{ favorite.location.elevation }}m</p>
+        <p *ngIf="favorite.location.icao"><strong>ICAO:</strong> {{ favorite.location.icao }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METAR-Daten -->
+<div *ngIf="metar" class="card metar">
+  <h2>METAR Data</h2>
+  <p *ngIf="metar.raw"><strong>Raw Report:</strong> {{ metar.raw }}</p>
+  <p *ngIf="metar.temperature !== undefined"><strong>Temperature:</strong> {{ metar.temperature }}°C</p>
+  <p *ngIf="metar.dewpoint !== undefined"><strong>Dew Point:</strong> {{ metar.dewpoint }}°C</p>
+  <p *ngIf="metar.humidity !== undefined && metar.humidity !== null">
+    <strong>Humidity:</strong> {{ (metar.humidity * 100).toFixed(0) }}%
+  </p></div>
+
+<!-- Wetter-Daten -->
+<div *ngIf="weatherData" class="card weather">
+  <h2>Weather Data</h2>
+  <div *ngIf="weatherData.length">
+    <h3>Weather Records</h3>
+    <ul class="weather-list">
+      <li *ngFor="let record of weatherData">
+        <strong>Time:</strong> {{ record.time }} |
+        <strong>Temperature:</strong> {{ record.temperature }}°C |
+        <strong>Humidity:</strong> {{ record.humidity }}%
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Zurück-Button (Link) -->
+<a routerLink="/favorites" class="btn-primary back-button">Back to list</a>
