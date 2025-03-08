@@ -11,6 +11,19 @@ permissions:
   contents: read
 
 jobs:
+  conform:
+    runs-on: ubuntu-latest
+    name: Conform
+
+    steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - uses: siderolabs/conform@v0.1.0-alpha.27
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   lint:
     runs-on: ubuntu-latest
     name: Lint Angular Project
@@ -29,8 +42,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Run Unit Tests
-    needs:
-      - lint
     steps:
       - uses: actions/checkout@v4.2.2
         with:
@@ -124,6 +135,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Angular Project
     needs:
+      - conform
+      - lint
       - test
 #      - e2e-test
     steps:
